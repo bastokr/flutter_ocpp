@@ -1,21 +1,3 @@
-# flutter_ocpp
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-
 안녕하세요
 아이마켓코리아 EV개발파트 진미연입니다.
 
@@ -45,7 +27,7 @@ samples, guidance on mobile development, and a full API reference.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebSocket Example</title>
-</head>
+</head> 
 <body>
     <script>
         const socket = new WebSocket("ws://112.106.138.100:8151/cp/IMK00039801");
