@@ -38,7 +38,7 @@ samples, guidance on mobile development, and a full API reference.
 웹에서 호출하는 예제 입니다.
 
 아래는 자바스크립트로 짠 예제입니다.
-'''
+```c
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -92,5 +92,5 @@ samples, guidance on mobile development, and a full API reference.
     <button onclick="sendWebSocketRequest()">Send WebSocket Request</button>
 </body>
 </html>
-'''   
+```
 
