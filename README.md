@@ -30,7 +30,7 @@
 </head> 
 <body>
     <script>
-        const socket = new WebSocket("ws://112.106.138.100:8151/cp/IMK00039801");
+        const socket = new WebSocket("******************************");
 
         socket.onopen = function(event) {
             console.log("WebSocket connection established.");
@@ -46,7 +46,7 @@
 
         function sendWebSocketRequest() {
             // ChargePointId와 AuthorizationKey 설정
-            const chargePointId = "IMK00039801";
+            const chargePointId = "************";
             const authorizationKey = "<AuthorizationKey>"; ==> 여기에 들어갈 키값 
 
             // 인증 헤더 생성
@@ -56,7 +56,7 @@
             const requestHeaders = {
                 "Upgrade": "websocket",
                 "Connection": "Upgrade",
-                "Sec-WebSocket-Key": "Pb4obWo2214EfaPQuazMjA==",
+                "Sec-WebSocket-Key": "**********==",
                 "Sec-WebSocket-Version": "13",
                 "Authorization": "Basic " + encodedCredentials
             };
