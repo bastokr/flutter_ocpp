@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:uuid/uuid.dart';
 import 'package:web_socket_channel/io.dart';
 
@@ -26,16 +27,21 @@ MessageTypeId 값: 2 RemoteStopTransaction (원격 거래 중단):
 MessageTypeId 값: 2 UnlockConnector (커넥터 잠금 해제): 
 */
 
-class Occp16 extends StatelessWidget {
+class Occp16 extends StatefulWidget {
+  @override
+  _Occp16State createState() => _Occp16State();
+}
+
+class _Occp16State extends State<Occp16> {
   var uuid = Uuid();
   String newUuid = "";
   int count = 1;
   String ipport = "127.0.0.1:8887";
   late var channel;
-  Occp16({super.key});
+  TextEditingController returnMessage = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(Object context) {
     return MaterialApp(
       title: 'OCPP Example',
       theme: ThemeData(
@@ -212,6 +218,29 @@ class Occp16 extends StatelessWidget {
               ),
             ],
           ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                returnMessage.text = "";
+              });
+            },
+            child: Text('로그메세지 삭제'),
+          ),
+          Column(
+            children: <Widget>[
+              TextField(
+                maxLines: 10,
+                controller: returnMessage,
+                onChanged: (text) {
+                  setState(() {});
+                  print('Text changed: $text');
+                },
+                decoration: InputDecoration(
+                  hintText: 'Type something...',
+                ),
+              ),
+            ],
+          )
         ])),
       ),
     );
@@ -219,22 +248,31 @@ class Occp16 extends StatelessWidget {
 
   void connect() {
     newUuid = uuid.v4();
+    var connectStream = 'ws://127.0.0.1:8887';
     channel = IOWebSocketChannel.connect(
-      'ws://127.0.0.1:8887',
+      connectStream,
       headers: {'Sec-WebSocket-Protocol': "ocpp1.6"},
     );
+    returnMessage.text = connectStream + ' Sec-WebSocket-Protocol' + "ocpp1.6";
     channel.stream.listen(
       (message) {
         print('Received message: $message');
+        setState(() {
+          returnMessage.text =
+              returnMessage.text + '\n' + "----------------------------------";
+          returnMessage.text = returnMessage.text + '\n' + message;
+        });
         count = count + 1;
         // 이 부분에 메시지를 처리하는 로직을 추가할 수 있습니다.
       },
       onError: (error) {
         print('Error: $error');
+        returnMessage.text = returnMessage.text + '\n' + 'Error: $error';
         // 이 부분에 오류 처리 로직을 추가할 수 있습니다.
       },
       onDone: () {
         print('Channel closed');
+        returnMessage.text = returnMessage.text + '\n' + 'Channel closed';
         // 이 부분에 채널이 닫혔을 때 실행할 로직을 추가할 수 있습니다.
       },
     );
