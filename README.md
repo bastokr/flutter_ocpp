@@ -1,18 +1,18 @@
- 
-
+![테스트화면](./image.png)
 
 [개발서버 접속정보]
-- 주소 :   
-- 접속하실 충전기 ID :  
+
+- 주소 :
+- 접속하실 충전기 ID :
 
 이상.
 
- 
-**   방화벽 :    ip 추가 필요  **
+** 방화벽 : ip 추가 필요 **
 
 웹에서 호출하는 예제 입니다.
 
 아래는 자바스크립트로 짠 예제입니다.
+
 ```c
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebSocket Example</title>
-</head> 
+</head>
 <body>
     <script>
         const socket = new WebSocket("******************************");
@@ -40,7 +40,7 @@
         function sendWebSocketRequest() {
             // ChargePointId와 AuthorizationKey 설정
             const chargePointId = "************";
-            const authorizationKey = "<AuthorizationKey>"; ==> 여기에 들어갈 키값 
+            const authorizationKey = "<AuthorizationKey>"; ==> 여기에 들어갈 키값
 
             // 인증 헤더 생성
             const credentials = chargePointId + ':' + authorizationKey;
@@ -68,4 +68,3 @@
 </body>
 </html>
 ```
-
